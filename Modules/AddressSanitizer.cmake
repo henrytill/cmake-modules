@@ -3,11 +3,11 @@ include(CheckIncludeFile)
 get_property(isMultiConfig GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
 
 if(isMultiConfig)
-  if(NOT "DebugAsan" IN_LIST CMAKE_CONFIGURATION_TYPES)
-    list(APPEND CMAKE_CONFIGURATION_TYPES DebugAsan)
+  if(NOT "DebugASan" IN_LIST CMAKE_CONFIGURATION_TYPES)
+    list(APPEND CMAKE_CONFIGURATION_TYPES DebugASan)
   endif()
 else()
-  set(allowedBuildTypes Debug Release RelWithDebInfo MinSizeRel DebugAsan)
+  set(allowedBuildTypes Debug Release RelWithDebInfo MinSizeRel DebugASan)
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "${allowedBuildTypes}")
 
   if(CMAKE_BUILD_TYPE AND NOT CMAKE_BUILD_TYPE IN_LIST allowedBuildTypes)
@@ -17,23 +17,23 @@ endif()
 
 set(CMAKE_C_FLAGS_DEBUGASAN
     "${CMAKE_C_FLAGS_DEBUG} -fsanitize=address -fno-omit-frame-pointer"
-    CACHE STRING "Flags used by the C compiler for DebugAsan build type or configuration." FORCE)
+    CACHE STRING "Flags used by the C compiler for DebugASan build type or configuration." FORCE)
 
 set(CMAKE_CXX_FLAGS_DEBUGASAN
     "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address -fno-omit-frame-pointer"
-    CACHE STRING "Flags used by the C++ compiler for DebugAsan build type or configuration." FORCE)
+    CACHE STRING "Flags used by the C++ compiler for DebugASan build type or configuration." FORCE)
 
 set(CMAKE_EXE_LINKER_FLAGS_DEBUGASAN
     "${CMAKE_SHARED_LINKER_FLAGS_DEBUG} -fsanitize=address"
-    CACHE STRING "Linker flags to be used to create executables for DebugAsan build type." FORCE)
+    CACHE STRING "Linker flags to be used to create executables for DebugASan build type." FORCE)
 
 set(CMAKE_SHARED_LINKER_FLAGS_DEBUGASAN
     "${CMAKE_SHARED_LINKER_FLAGS_DEBUG} -fsanitize=address"
-    CACHE STRING "Linker lags to be used to create shared libraries for DebugAsan build type." FORCE)
+    CACHE STRING "Linker lags to be used to create shared libraries for DebugASan build type." FORCE)
 
 ### Some other helpful config
 
-if("${CMAKE_BUILD_TYPE}" STREQUAL "DebugAsan")
+if("${CMAKE_BUILD_TYPE}" STREQUAL "DebugASan")
   SET(ASAN TRUE)
 endif()
 
