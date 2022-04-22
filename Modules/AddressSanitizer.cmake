@@ -29,7 +29,7 @@ set(CMAKE_EXE_LINKER_FLAGS_DEBUGASAN
 
 set(CMAKE_SHARED_LINKER_FLAGS_DEBUGASAN
     "${CMAKE_SHARED_LINKER_FLAGS_DEBUG} -fsanitize=address"
-    CACHE STRING "Linker lags to be used to create shared libraries for DebugASan build type." FORCE)
+    CACHE STRING "Linker flags to be used to create shared libraries for DebugASan build type." FORCE)
 
 ### Some other helpful config
 
@@ -44,8 +44,6 @@ endif()
 CHECK_INCLUDE_FILE(sanitizer/asan_interface.h HAS_ASAN_INTERFACE)
 
 if(HAS_ASAN_INTERFACE)
-  find_library(LIBASAN NAMES asan libasan.so.6)
-
   if(CLANG AND UNIX)
     execute_process(COMMAND clang -print-file-name=libclang_rt.asan-x86_64.so
                     OUTPUT_STRIP_TRAILING_WHITESPACE
