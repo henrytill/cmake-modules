@@ -17,3 +17,13 @@ function(test_has_builtin_types_compatible_p)
               C_STANDARD_REQUIRED ON
               COPY_FILE ${CMAKE_CURRENT_BINARY_DIR}/feature/has_builtin_types_compatible_p)
 endfunction()
+
+function(test_has_generic)
+  try_compile(HAS_GENERIC
+              ${CMAKE_CURRENT_BINARY_DIR}
+              ${PWD}/has_generic.c
+              C_STANDARD 11
+              C_STANDARD_REQUIRED ON
+              LINK_LIBRARIES m
+              COPY_FILE ${CMAKE_CURRENT_BINARY_DIR}/feature/has_generic)
+endfunction()
