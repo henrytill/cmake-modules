@@ -1,5 +1,14 @@
 set(PWD ${CMAKE_CURRENT_LIST_DIR})
 
+function(test_has_gnuc)
+  try_compile(HAS_GNUC
+              ${CMAKE_CURRENT_BINARY_DIR}
+              ${PWD}/has_gnuc.c
+              C_STANDARD 99
+              C_STANDARD_REQUIRED ON
+              COPY_FILE ${CMAKE_CURRENT_BINARY_DIR}/feature/has_gnuc)
+endfunction()
+
 function(test_has_attribute_cleanup)
   try_compile(HAS_ATTRIBUTE_CLEANUP
               ${CMAKE_CURRENT_BINARY_DIR}
